@@ -6,7 +6,7 @@
 /*   By: mkehon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 15:34:54 by mkehon            #+#    #+#             */
-/*   Updated: 2017/10/06 00:36:55 by maxou            ###   ########.fr       */
+/*   Updated: 2017/10/06 11:58:59 by mkehon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,40 +39,40 @@ int		is_grid(char *str)
 	return(1);
 }
 
-/* h for '#' count, p for '#' pos.
+/* h for '#' count. X for already  used #.
 ** i < 15 and i > 0 for grid boundaries */
 
 int		is_shape(char *str)
 {
 	int i;
-	int h;
-	int p;
+	int x;
 
 	i = 0;
-	h = 0;
-	p = 0;
+	x = 0;
 	while (str[i] != '\0')
 	{
-		i++;
 		if (str[i] == '#')
 		{
-			if (str[i + 1] == '#')
-				h++;
-			if (str[i + 5] == '#')
-				h++;
-			if (str[i - 1] == '#')
-				h++;
-		printf("i: %d | h: %d | p: %d\n", i, h, p);	
+			if (str[i + 1]  && str[i + 1] == '#')
+				x++;
+			if (str[i + 5]  && str[i + 5] == '#')
+				x++;
+			if (str[i - 1]  && str[i -1] == '#')
+				x++;
+			if (str[i - 5]  && str[i -5] == '#')
+				x++;
 		}
+		i++;
 	}
-	printf("TOTAL #: %d\n", h);
-	if (h == 3)
+	printf("TOTAL #: %d || ", x);
+	if (x == 6 || x == 8)
 		return (1);
 	return (0);
 }
 
 int		main()
 {
+		
 	printf("result: %d\n", is_shape("####\n....\n....\n....\n"));
 	printf("result: %d\n", is_shape("....\n....\n.###\n...#\n"));
 	printf("result: %d\n", is_shape("...#\n...#\n...#\n...#\n"));
