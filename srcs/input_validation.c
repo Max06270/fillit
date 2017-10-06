@@ -6,7 +6,7 @@
 /*   By: mkehon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 15:34:54 by mkehon            #+#    #+#             */
-/*   Updated: 2017/10/05 18:55:26 by mkehon           ###   ########.fr       */
+/*   Updated: 2017/10/06 00:36:55 by maxou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,19 @@ int		is_shape(char *str)
 	while (str[i] != '\0')
 	{
 		i++;
-		if (str[i] == '#' && (h == 4 || (str[i + 1] == '#' || (i < 15 && str[i + 5] == '#') || (i > 0 && str[i - 1] == '#' && p != i))))
+		if (str[i] == '#')
 		{
-			h++;
-			p = i;
-			printf("i: %d | h: %d | p: %d\n", i, h, p);
+			if (str[i + 1] == '#')
+				h++;
+			if (str[i + 5] == '#')
+				h++;
+			if (str[i - 1] == '#')
+				h++;
+		printf("i: %d | h: %d | p: %d\n", i, h, p);	
 		}
 	}
-	if (h == 4)
+	printf("TOTAL #: %d\n", h);
+	if (h == 3)
 		return (1);
 	return (0);
 }
@@ -73,5 +78,6 @@ int		main()
 	printf("result: %d\n", is_shape("...#\n...#\n...#\n...#\n"));
 	printf("result: %d\n", is_shape("....\n..##\n..##\n....\n"));
 	printf("result: %d\n", is_shape("....\n..##\n..##\n####\n"));
+	printf("result: %d\n", is_shape("....\n..#.\n.###\n....\n"));
 	return (0);
 }
