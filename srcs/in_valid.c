@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input_validation.c                                 :+:      :+:    :+:   */
+/*   in_valid.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkehon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/05 15:34:54 by mkehon            #+#    #+#             */
-/*   Updated: 2017/10/06 11:58:59 by mkehon           ###   ########.fr       */
+/*   Created: 2017/10/06 13:51:39 by mkehon            #+#    #+#             */
+/*   Updated: 2017/10/06 17:14:38 by mkehon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "stdio.h"
+#include <stdio.h>
+#include <fcntl.h>
+#include <unistd.h>
 
 int		is_grid(char *str)
 {
-	int i;
-	int x;
-	int y;
+	int 	i;
+	int 	x;
+	int 	y;
 
 	i = 0;
 	x = 0;
@@ -25,27 +27,24 @@ int		is_grid(char *str)
 	{
 		i++;
 		x++;
-		printf("i: %d | x: %d\n", i, x);
 		if (x == 4 && str[i] == '\n')
 		{
 			i++;
 			y--;
 			x = 0;
-			printf("y: %d\n", y);
 		}
 	}
+	if (str[i + 1] == '\0')
+		return (0);
 	if (y != 0)
 		return (0);
 	return(1);
 }
 
-/* h for '#' count. X for already  used #.
-** i < 15 and i > 0 for grid boundaries */
-
 int		is_shape(char *str)
 {
-	int i;
-	int x;
+	int 	i;
+	int 	x;
 
 	i = 0;
 	x = 0;
@@ -57,27 +56,42 @@ int		is_shape(char *str)
 				x++;
 			if (str[i + 5]  && str[i + 5] == '#')
 				x++;
-			if (str[i - 1]  && str[i -1] == '#')
+			if (str[i - 1]  && str[i - 1] == '#')
 				x++;
-			if (str[i - 5]  && str[i -5] == '#')
+			if (str[i - 5]  && str[i - 5] == '#')
 				x++;
 		}
 		i++;
 	}
-	printf("TOTAL #: %d || ", x);
 	if (x == 6 || x == 8)
 		return (1);
 	return (0);
-}
+}  
 
-int		main()
+/* after read, each buffer ends with '\0'*/
+int		main(int argc, char **argv)
 {
-		
-	printf("result: %d\n", is_shape("####\n....\n....\n....\n"));
-	printf("result: %d\n", is_shape("....\n....\n.###\n...#\n"));
-	printf("result: %d\n", is_shape("...#\n...#\n...#\n...#\n"));
-	printf("result: %d\n", is_shape("....\n..##\n..##\n....\n"));
-	printf("result: %d\n", is_shape("....\n..##\n..##\n####\n"));
-	printf("result: %d\n", is_shape("....\n..#.\n.###\n....\n"));
-	return (0);
+
+	int		fd;
+	char	buf[21];
+	int		lu;
+	
+	fd = 0;
+	lu = 1; 
+	if (argc == 2)	
+	{
+		fd = open(argv[1], O_RDONLY); // return the address of the file
+		while (lu != 0)
+		{
+			lu = read(fd, buf, 21); // read in fd 21 char into buffer
+			if (!is_grid(buf) || !is_shape(buf))
+			{
+				printf("is_grid: %d | is_shape: %d\n", is_grid(buf), is_shape(buf));
+				return (0);
+			}
+		}
+	}
+
+	printf("Wesh alors\n");
+	return (1);
 }
