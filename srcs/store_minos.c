@@ -1,25 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   store_minos.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkehon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/05 15:32:56 by mkehon            #+#    #+#             */
-/*   Updated: 2017/10/09 13:51:16 by mkehon           ###   ########.fr       */
+/*   Created: 2017/10/09 12:06:38 by mkehon            #+#    #+#             */
+/*   Updated: 2017/10/09 12:07:50 by mkehon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "../fillit.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <stdio.h> // DELETE
 
-int		is_grid(char *str);
-int		is_shape(char *str);
-int		is_valid(char *str);
-
-#endif
