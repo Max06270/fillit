@@ -5,38 +5,54 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mkehon <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2017/10/05 11:33:39 by mkehon            #+#    #+#              #
-#    Updated: 2017/10/09 15:38:29 by mkehon           ###   ########.fr        #
+#    Created: 2017/10/10 15:31:28 by mkehon            #+#    #+#              #
+#    Updated: 2017/10/10 16:06:09 by mkehon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fillit
-LIBFT = libft/libft.a
-FLAGS = -Wall -Wextra -Werror
+CC				=	gcc
+NAME			=	fillit
+FLAGS			=	-Wall -Wextra -Werror
 
-SRC_DIR = srcs/
-OBJ_DIR = objs/
+LIB_PATH		=	libft
+LIB				=	$(LIB_PATH)/libft.a
+LIB_LINK		=	-L $(LIB_PATH) -lft
 
-FILES +=	main.c			\
-			read_file.c		\
-			store_minos.c
+INC_DIR			=	include
+INCS			=	-I $(LIB_PATH)/$(INC_DIR) -I $(INC_DIR)
 
-OBJ = $(addprefix $(OBJ_DIR),$(FILES:.c=.o))
-SRC = $(addprefix $(SRC_DIR), $(FILES))
+SRC_DIR			=	srcs
+SRC_BASE		= 	main.c 			\
+					read_file.c		\
+					store_minos.c	
 
-all: $(NAME)
+OBJ_DIR			=	objs
 
-$(NAME):
-	mkdir objs
-	gcc $(FLAGS) -c $(SRC) -o $@
-#	gcc $(FLAGS) $(LIBFT) $(OBJ) -o $(NAME)
+SRCS			=	$(addprefix $(SRC_DIR)/, $(SRC_BASE))
+OBJS			=	$(addprefix $(OBJ_DIR)/, $(SRC_BASE:.c=.o))
+
+all: obj $(NAME)
+
+$(NAME): $(LIB) $(OBJS)
+	$(CC) $(FLAGS) -o $@ $^ $(LIB_LINK)
+
+$(LIB):
+	make -C $(LIB_PATH)
+
+obj:
+	mkdir -p $(OBJ_DIR)
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INC_DIR)/*.h
+	$(CC) $(FLAGS) $(INCS) -c -o $@ $<
 
 clean:
-	/bin/rm -rf objs/
+	rm -f $(OBJS)
+	rm -rf $(OBJ_DIR)
 
 fclean: clean
-		/bin/rm -rf $(NAME)
+	rm -f $(NAME)
+	make -C $(LIB_PATH) fclean
 
 re: fclean all
 
-.PHONY:	all clean fclean re
+.PHONY: clean all re fclean

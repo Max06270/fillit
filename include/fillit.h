@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   fillit.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkehon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/06 13:51:39 by mkehon            #+#    #+#             */
-/*   Updated: 2017/10/10 16:11:07 by mkehon           ###   ########.fr       */
+/*   Created: 2017/10/05 15:32:56 by mkehon            #+#    #+#             */
+/*   Updated: 2017/10/09 13:51:16 by mkehon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fillit.h>
+#ifndef LIBFT_H
+# define LIBFT_H
 
-int		main(int argc, char **argv)
-{
-	if (argc == 2)
-	{	
-		if (!is_valid(argv[1]))
-			return (0);
-	}
-	return (1);
-}
+# include <unistd.h>
+# include <stdlib.h>
+# include <fcntl.h>
+# include <stdio.h> // DELETE
+
+int		is_grid(char *str);
+int		is_shape(char *str);
+int		is_valid(char *str);
+
+#endif

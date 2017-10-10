@@ -6,11 +6,11 @@
 /*   By: mkehon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 13:51:39 by mkehon            #+#    #+#             */
-/*   Updated: 2017/10/09 14:48:39 by mkehon           ###   ########.fr       */
+/*   Updated: 2017/10/10 16:10:28 by mkehon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fillit.h"
+#include <fillit.h>
 
 int		is_grid(char *str)
 {
@@ -95,15 +95,5 @@ int		is_valid(char *str)
 	}
 	if (temp != 20)
 		return (0);
-	return (1);
-}
-
-int		main(int argc, char **argv)
-{
-	if (argc == 2)
-	{	
-		if (!is_valid(argv[1]))
-			return (0);
-	}
 	return (1);
 }
