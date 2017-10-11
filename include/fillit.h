@@ -6,7 +6,7 @@
 /*   By: mkehon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 15:32:56 by mkehon            #+#    #+#             */
-/*   Updated: 2017/10/09 13:51:16 by mkehon           ###   ########.fr       */
+/*   Updated: 2017/10/10 18:11:05 by mkehon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,15 @@
 # include <fcntl.h>
 # include <stdio.h> // DELETE
 
-int		is_grid(char *str);
-int		is_shape(char *str);
-int		is_valid(char *str);
+typedef	struct 	s_shape
+{
+		int 	index;
+		int		*coor;
+		struct 	s_shape *next;
+}				s_shape;
+
+int				is_grid(char *str);
+int				is_shape(char *str);
+int				is_valid(char *str);
 
 #endif
