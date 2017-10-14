@@ -6,62 +6,83 @@
 /*   By: mkehon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 12:06:38 by mkehon            #+#    #+#             */
-/*   Updated: 2017/10/10 18:42:01 by mkehon           ###   ########.fr       */
+/*   Updated: 2017/10/13 19:29:28 by mkehon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fillit.h>
+// #include <fillit.h>
+#include <fcntl.h>
+#include <stdio.h>
+#include <unistd.h>
 
-int		*def_shape(char *str)
+typedef struct s_shape
 {
-	int	i;
-	int j;
+	char index;
 	int coor[4];
+	struct t_shape *next;
+} t_shape;
+
+/*
+** (j - 1 % 4) checks if we can transpose properly the shape.
+*/
+
+t_shape		coor_shape(char *str, char c)
+{
+	int		i;
+	int 	j;
+	int 	k;
+	t_shape result;
 
 	i = 0;
 	j = 0;
-	
-	while (str[i] != '\0')
-	{
+	k = 0;
+	while (str[i] != '#')
 		i++;
-		if (str[i] == '#')
+	while (str[j] != '\0')
+	{
+		if (str[j] == '#')
 		{
-			while (str[j] != '\0')
+			if (((j - i) % 4) == 0 && (j - i) != 0)
 			{
-				if (str[j] == '#')
-				{
-					j++;
-					coor = j;
-					coor++;
-				}
+				i--;
+				j = -1;
+				k = 0;
 			}
+			else
+				result.coor[k++] = j - i;
 		}
+		j++;
 	}
-	return (coor); // A FINIR	
+	result.index = c;
+	return (result);
 }
 
-/*
-s_shape		l_shape(char *str)
+t_shape		index_shape(char *str)
 {
-	int		fd;
-	int		i;
-	char 	buf[21];
+    int		fd;
+	char	c;
+    char 	buf[21];
+	t_shape result;
+    
+    fd = 0;
+	c =	'A';
+    fd = open(str, O_RDONLY);
+    while (read(fd, buf, 21) > 0)
+	{;
+		result = coor_shape(buf, c);
+		c++;
+		printf("index: %c | coor: [%d, %d, %d, %d]\n", result.index, result.coor[0], result.coor[1], result.coor[2], result.coor[3]);
+	}
+	return (result);	
+}
 
-	fd = 0;
-	i = 0;
 
-	fd = open(str, 0_RDONLY);
-	if (!is_valid)
+int		main(int argc, char **argv)
+{
+	if (argc == 2)
 	{
-		while(lu != 0)
-		{
-			lu = read(fd, buf, 21);
-			i++;
-			coor = 'PlaceHolder'; // A FAIRE
-		}
+		index_shape(argv[1]);
+		return (1);
 	}
 	return (0);
-
 }
-
-*/

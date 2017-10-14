@@ -6,7 +6,7 @@
 /*   By: mkehon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 15:32:56 by mkehon            #+#    #+#             */
-/*   Updated: 2017/10/10 18:11:05 by mkehon           ###   ########.fr       */
+/*   Updated: 2017/10/11 11:18:46 by mkehon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@
 
 typedef	struct 	s_shape
 {
-		int 	index;
-		int		*coor;
-		struct 	s_shape *next;
-}				s_shape;
+		int index;
+		int	coor[4];
+		struct t_shape *next;
+}	t_shape;
 
 int				is_grid(char *str);
 int				is_shape(char *str);
