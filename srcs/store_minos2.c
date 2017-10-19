@@ -1,48 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   store_minos.c                                      :+:      :+:    :+:   */
+/*   store_minos2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkehon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 12:06:38 by mkehon            #+#    #+#             */
-/*   Updated: 2017/10/18 18:05:14 by mkehon           ###   ########.fr       */
+/*   Updated: 2017/10/18 17:41:03 by mkehon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
+// A FAIRE 27 LIGNES FCT COOR_SHAPE
+// UTILISER *NEXT
 
 // #include <fillit.h>
 #include <fcntl.h>
 #include <stdio.h>
 #include <unistd.h>
 
-int	
+typedef struct s_shape
+{
+	char index;
+	int coor[4];
+	struct t_shape *next;
+} t_shape;
 
 /*
 ** (j - 1 % 4) checks if we can transpose properly the shape.
 */
 
-int		trim_x(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != '#' && i < 4)
-	{
-		i++;
-		if (i == 4)
-		{
-			skip line
-			i = 0;
-		}
-
-}
-
-int		*coor_shape(char *str, char c)
+t_shape		coor_shape(char *str, char c)
 { 
 	int	i;
 	int j;
 	int k;
-	int result[5];
+	t_shape result;
 
 	i = 0;
 	j = 0;
@@ -60,11 +53,11 @@ int		*coor_shape(char *str, char c)
 				k = 0;
 			}
 			else
-				result[k++] = j - i;
+				result.coor[k++] = j - i;
 		}
 		j++;
 	}
-	result[4] = c;
+	result.index = c;
 	return (result);
 }
 
@@ -73,7 +66,7 @@ t_shape		index_shape(char *str)
     int		fd;
 	char	c;
     char 	buf[21];
-	int 	result[5];
+	t_shape	result;
     
     fd = 0;
 	c =	'A';
@@ -82,7 +75,7 @@ t_shape		index_shape(char *str)
 	{
 		result = coor_shape(buf, c);
 		c++;
-		printf("index: %c | coor: [%d, %d, %d, %d]\n", result.index, result[0], result[1], result[2], result[3]);
+		printf("index: %c | coor: [%d, %d, %d, %d]\n", result.index, result.coor[0], result.coor[1], result.coor[2], result.coor[3]);
 	}
 	return (result);	
 }
