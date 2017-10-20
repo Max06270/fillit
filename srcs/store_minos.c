@@ -6,7 +6,7 @@
 /*   By: mkehon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 12:06:38 by mkehon            #+#    #+#             */
-/*   Updated: 2017/10/19 11:26:17 by mkehon           ###   ########.fr       */
+/*   Updated: 2017/10/20 16:24:49 by mkehon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,63 @@
 #include <stdio.h>
 #include <unistd.h>
 
- {
-    int h;
+int		x_trim(char *str)
+{
 	int	i;
 	int j;
     int x;
 
-    h = 0;
 	i = 0;
 	j = 0;
     x = 0;
-	while (str[j] != '\0')
+	while (str[i] != '#')
 	{
-        if (str[j] == '.')
-            i++
-        j++;
-        
+		if (str[i] == '.')
+			j++;
+		if (j == 4)
+		{
+            x++;
+			j = 0;
+		}
+		i++;
     }
+	return (x);
 
+}
+
+int		y_trim(char *str)
+{
+    int	i;
+    int j;
+    int y;
+    
+    i = 0;
+    j = 0;
+    y = 0;
+    while (str[i] != '\0')
+    {
+        if (str[i] == '.' && (i % 5 == 0 + y))
+			j++;
+        if (j == 4)
+		{
+			i = y;
+			j = 0;
+			j++;
+		}
+        i++;
+    }
+    return (y);
+    
 }
 
 int     main()
 {
     x_trim("....\n####\n....\n....");
+    x_trim("....\n....\n....\n####");
+    x_trim("..##\n..##\n....\n....");
+    x_trim("....\n.##.\n.##.\n....");
+    x_trim("....\n....\n.###\n..#.");
+    x_trim("...#\n...#\n...#\n...#");
     return (0);
 }
 
