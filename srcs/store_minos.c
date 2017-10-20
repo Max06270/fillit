@@ -6,7 +6,7 @@
 /*   By: mkehon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 12:06:38 by mkehon            #+#    #+#             */
-/*   Updated: 2017/10/18 18:05:14 by mkehon           ###   ########.fr       */
+/*   Updated: 2017/10/19 11:26:17 by mkehon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,59 +15,34 @@
 #include <stdio.h>
 #include <unistd.h>
 
-int	
-
-/*
-** (j - 1 % 4) checks if we can transpose properly the shape.
-*/
-
-int		trim_x(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != '#' && i < 4)
-	{
-		i++;
-		if (i == 4)
-		{
-			skip line
-			i = 0;
-		}
-
-}
-
-int		*coor_shape(char *str, char c)
-{ 
+ {
+    int h;
 	int	i;
 	int j;
-	int k;
-	int result[5];
+    int x;
 
+    h = 0;
 	i = 0;
 	j = 0;
-	k = 0;
-	while (str[i] != '#')
-		i++;
+    x = 0;
 	while (str[j] != '\0')
 	{
-		if (str[j] == '#')
-		{
-			if (((j - i) % 4) == 0 && (j - i) != 0)
-			{
-				i--;
-				j = -1;
-				k = 0;
-			}
-			else
-				result[k++] = j - i;
-		}
-		j++;
-	}
-	result[4] = c;
-	return (result);
+        if (str[j] == '.')
+            i++
+        j++;
+        
+    }
+
 }
 
+int     main()
+{
+    x_trim("....\n####\n....\n....");
+    return (0);
+}
+
+
+/*
 t_shape		index_shape(char *str)
 {
     int		fd;
@@ -92,8 +67,11 @@ int		main(int argc, char **argv)
 {
 	if (argc == 2)
 	{
-		index_shape(argv[1]);
+		x_trim(argv[1]);
 		return (1);
 	}
 	return (0);
 }
+ 
+ */
+
