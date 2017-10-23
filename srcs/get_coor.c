@@ -6,7 +6,7 @@
 /*   By: mkehon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 12:06:38 by mkehon            #+#    #+#             */
-/*   Updated: 2017/10/23 14:53:04 by mkehon           ###   ########.fr       */
+/*   Updated: 2017/10/23 16:20:37 by mkehon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+
+/*
+** remove empty horizontal lines.
+*/
 
 int		x_trim(char *str)
 {
@@ -40,6 +44,10 @@ int		x_trim(char *str)
 
 }
 
+/*
+** remove empty vertical lines.
+*/
+
 int		y_trim(char *str)
 {
     int	i;
@@ -57,12 +65,16 @@ int		y_trim(char *str)
 		{
 			i = y;
 			j = 0;
-			j++;
+			y++;
 		}
         i++;
     }
     return (y); 
 }
+
+/*
+** get # positions and return values aligned on top left corner.
+*/
 
 int		*coor(char *str)
 {
@@ -82,37 +94,25 @@ int		*coor(char *str)
 	return (v);
 }
 
-int     main()
-{
-    coor("....\n####\n....\n....");
-	coor("####\n....\n....\n....");
-    coor("....\n....\n....\n####");
-    x_trim("..##\n..##\n....\n....");
-    x_trim("....\n.##.\n.##.\n....");
-    x_trim("....\n....\n.###\n..#.");
-    x_trim("...#\n...#\n...#\n...#");
-    return (0);
-}
-
-
 /*
-t_shape		index_shape(char *str)
+** read file and return shapes coordinates.
+*/
+
+int		*get_coor(char *str)
 {
     int		fd;
-	char	c;
     char 	buf[21];
-	int 	result[5];
+	int 	*v;
     
     fd = 0;
-	c =	'A';
+	v = malloc(sizeof(int) * 4);
     fd = open(str, O_RDONLY);
     while (read(fd, buf, 21) > 0)
 	{
-		result = coor_shape(buf, c);
-		c++;
-		printf("index: %c | coor: [%d, %d, %d, %d]\n", result.index, result[0], result[1], result[2], result[3]);
+		v = coor(buf);
+		printf("coor: [%d, %d, %d, %d]\n", v[0], v[1], v[2], v[3]);
 	}
-	return (result);	
+	return (v);
 }
 
 
@@ -120,11 +120,9 @@ int		main(int argc, char **argv)
 {
 	if (argc == 2)
 	{
-		x_trim(argv[1]);
+		get_coor(argv[1]);
 		return (1);
 	}
 	return (0);
 }
- 
- */
 
