@@ -6,15 +6,11 @@
 /*   By: mkehon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 12:06:38 by mkehon            #+#    #+#             */
-/*   Updated: 2017/10/23 16:20:37 by mkehon           ###   ########.fr       */
+/*   Updated: 2017/10/23 16:47:04 by mkehon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <fillit.h>
-#include <fcntl.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
+#include <fillit.h>
 
 /*
 ** remove empty horizontal lines.
@@ -76,7 +72,7 @@ int		y_trim(char *str)
 ** get # positions and return values aligned on top left corner.
 */
 
-int		*coor(char *str)
+int		*pos(char *str)
 {
 	int i;
 	int j;
@@ -98,7 +94,7 @@ int		*coor(char *str)
 ** read file and return shapes coordinates.
 */
 
-int		*get_coor(char *str)
+int		*read_coor(char *str)
 {
     int		fd;
     char 	buf[21];
@@ -109,20 +105,8 @@ int		*get_coor(char *str)
     fd = open(str, O_RDONLY);
     while (read(fd, buf, 21) > 0)
 	{
-		v = coor(buf);
+		v = pos(buf);
 		printf("coor: [%d, %d, %d, %d]\n", v[0], v[1], v[2], v[3]);
 	}
 	return (v);
 }
-
-
-int		main(int argc, char **argv)
-{
-	if (argc == 2)
-	{
-		get_coor(argv[1]);
-		return (1);
-	}
-	return (0);
-}
-
