@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   store_minos.c                                      :+:      :+:    :+:   */
+/*   get_coor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkehon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 12:06:38 by mkehon            #+#    #+#             */
-/*   Updated: 2017/10/20 17:00:06 by mkehon           ###   ########.fr       */
+/*   Updated: 2017/10/23 14:53:04 by mkehon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // #include <fillit.h>
 #include <fcntl.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <unistd.h>
 
 int		x_trim(char *str)
@@ -67,18 +68,18 @@ int		*coor(char *str)
 {
 	int i;
 	int j;
-	int	v[4];
+	int	*v;
 	
 	i = 0;
 	j = 0;
+	v = malloc(sizeof(int) * 4);
 	while (str[i] != '\0')
 	{
 		if (str[i] == '#')
-			v[j++] = i;
+			v[j++] = i - 5 * x_trim(str) - 1 * y_trim(str);
 		i++;
 	}
-	printf("[%i, %i, %i, %i]\n", v[0], v[1], v[2], v[3]);
-	return (0); //(v);
+	return (v);
 }
 
 int     main()
