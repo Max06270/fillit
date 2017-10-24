@@ -6,7 +6,7 @@
 /*   By: mkehon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 13:51:39 by mkehon            #+#    #+#             */
-/*   Updated: 2017/10/23 16:52:12 by mkehon           ###   ########.fr       */
+/*   Updated: 2017/10/23 17:09:10 by mkehon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		main(int argc, char **argv)
 	if (argc == 2)
 	{	
 		if (!is_valid(argv[1]))
-			return (0);
+			return (0); // to be changed to "error".
 		read_coor(argv[1]);
 	}
 	return (1);
