@@ -6,12 +6,12 @@
 #    By: mkehon <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/10 15:31:28 by mkehon            #+#    #+#              #
-#    Updated: 2017/10/23 16:49:44 by mkehon           ###   ########.fr        #
+#    Updated: 2017/10/25 14:05:01 by mkehon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC				=	gcc
 NAME			=	fillit
+CC				=	gcc
 FLAGS			=	-Wall -Wextra -Werror
 
 LIB_PATH		=	libft

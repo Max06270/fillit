@@ -6,7 +6,7 @@
 /*   By: mkehon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 12:06:38 by mkehon            #+#    #+#             */
-/*   Updated: 2017/10/23 16:47:04 by mkehon           ###   ########.fr       */
+/*   Updated: 2017/10/25 16:01:00 by mkehon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,31 @@ int		y_trim(char *str)
 }
 
 /*
-** get # positions and return values aligned on top left corner.
+** remove \n 
+*/
+
+char	*rm_n(char *str)
+{
+	int		i;
+	int		j;
+	char	*temp;
+
+	i = 0;
+	j = 0;
+	temp = malloc(sizeof(char) * 16);
+	while (str[i] != '\0')
+	{
+		if (str[i] == '\n')
+			i++;
+		temp[j] = str[i];
+		i++;
+		j++;
+	}
+	return (temp);
+}
+
+/*
+** get # positions and return values aligned in top left corner.
 */
 
 int		*pos(char *str)
@@ -84,7 +108,7 @@ int		*pos(char *str)
 	while (str[i] != '\0')
 	{
 		if (str[i] == '#')
-			v[j++] = i - 5 * x_trim(str) - 1 * y_trim(str);
+			v[j++] = i - 4 * x_trim(str) - 1 * y_trim(str);
 		i++;
 	}
 	return (v);
@@ -105,7 +129,7 @@ int		*read_coor(char *str)
     fd = open(str, O_RDONLY);
     while (read(fd, buf, 21) > 0)
 	{
-		v = pos(buf);
+		v = pos(rm_n(buf));
 		printf("coor: [%d, %d, %d, %d]\n", v[0], v[1], v[2], v[3]);
 	}
 	return (v);

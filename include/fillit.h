@@ -6,7 +6,7 @@
 /*   By: mkehon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 15:32:56 by mkehon            #+#    #+#             */
-/*   Updated: 2017/10/23 17:09:29 by mkehon           ###   ########.fr       */
+/*   Updated: 2017/10/25 15:43:00 by mkehon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int		is_valid(char *str);
 
 int		x_trim(char *str);
 int		y_trim(char *str);
+char 	*rm_n(char *str);
 int		*pos(char *str);
 int		*read_coor(char *str);
 
