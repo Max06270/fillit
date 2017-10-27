@@ -6,7 +6,7 @@
 /*   By: mkehon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 12:06:38 by mkehon            #+#    #+#             */
-/*   Updated: 2017/10/25 16:01:00 by mkehon           ###   ########.fr       */
+/*   Updated: 2017/10/26 17:21:27 by mkehon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int		y_trim(char *str)
     y = 0;
     while (str[i] != '\0')
     {
-        if (str[i] == '.' && (i % 5 == 0 + y))
+        if (str[i] == '.' && (i % 4 == 0 + y))
 			j++;
         if (j == 4)
 		{
@@ -96,19 +96,26 @@ char	*rm_n(char *str)
 ** get # positions and return values aligned in top left corner.
 */
 
-int		*pos(char *str)
+int		**pos(char *str)
 {
 	int i;
 	int j;
-	int	*v;
+	int temp;
+	int	**v;
 	
 	i = 0;
 	j = 0;
-	v = malloc(sizeof(int) * 4);
+	v = malloc(sizeof(int *) * 4);
 	while (str[i] != '\0')
 	{
 		if (str[i] == '#')
-			v[j++] = i - 4 * x_trim(str) - 1 * y_trim(str);
+		{
+			v[j] = malloc(sizeof(int) * 2);
+			temp = i - 4 * x_trim(str) - y_trim(str);
+			v[j][0] = temp % 4;
+			v[j][1] = temp / 4;
+			j++;
+		}
 		i++;
 	}
 	return (v);
@@ -118,19 +125,18 @@ int		*pos(char *str)
 ** read file and return shapes coordinates.
 */
 
-int		*read_coor(char *str)
+int		**read_coor(char *str)
 {
     int		fd;
     char 	buf[21];
-	int 	*v;
+	int		**w;
     
-    fd = 0;
-	v = malloc(sizeof(int) * 4);
     fd = open(str, O_RDONLY);
     while (read(fd, buf, 21) > 0)
 	{
-		v = pos(rm_n(buf));
-		printf("coor: [%d, %d, %d, %d]\n", v[0], v[1], v[2], v[3]);
+		w = pos(rm_n(buf));
+        printf("coord: [%d, %d][%d, %d][%d, %d][%d, %d]\n",
+				w[0][0],w[0][1],w[1][0],w[1][1],w[2][0],w[2][1],w[3][0],w[3][1]);
 	}
-	return (v);
+	return (w);
 }

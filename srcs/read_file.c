@@ -6,7 +6,7 @@
 /*   By: mkehon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 13:51:39 by mkehon            #+#    #+#             */
-/*   Updated: 2017/10/10 16:10:28 by mkehon           ###   ########.fr       */
+/*   Updated: 2017/10/26 17:21:54 by mkehon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int		is_shape(char *str)
 } 
 
 /*
-** lu = nb of char 'open' was able to reaad.
+** lu = nb of char 'open' was able to read.
 ** read(fd, buf, 21) read from fd 21 char into buffer.
 ** after read, each buffer ends with '\0'.
 ** if read read 0 buf keeps previous value.
@@ -80,9 +80,7 @@ int		is_valid(char *str)
 	int		temp;
 	int		lu;
 
-	fd = 0;
-	lu = 1;
-	
+	lu = 1;	
 	fd = open(str, O_RDONLY);
 	while (lu != 0)
 	{

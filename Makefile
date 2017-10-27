@@ -6,7 +6,7 @@
 #    By: mkehon <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/10 15:31:28 by mkehon            #+#    #+#              #
-#    Updated: 2017/10/25 14:05:01 by mkehon           ###   ########.fr        #
+#    Updated: 2017/10/26 15:35:46 by mkehon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ INCS			=	-I $(LIB_PATH)/$(INC_DIR) -I $(INC_DIR)
 SRC_DIR			=	srcs
 SRC_BASE		= 	main.c 			\
 					read_file.c		\
-					get_coor.c	
+					get_coor.c		\
+					ini_map.c	
 
 OBJ_DIR			=	objs
 

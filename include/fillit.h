@@ -6,7 +6,7 @@
 /*   By: mkehon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 15:32:56 by mkehon            #+#    #+#             */
-/*   Updated: 2017/10/25 15:43:00 by mkehon           ###   ########.fr       */
+/*   Updated: 2017/10/26 17:21:58 by mkehon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,14 @@ int		is_valid(char *str);
 int		x_trim(char *str);
 int		y_trim(char *str);
 char 	*rm_n(char *str);
-int		*pos(char *str);
-int		*read_coor(char *str);
+int		**pos(char *str);
+int		**read_coor(char *str);
+
+/*
+** ini_map.c
+*/
+
+char	**ini_map(int size);
+void	print_map(char **map, int size);
 
 #endif
