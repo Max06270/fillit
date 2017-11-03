@@ -6,7 +6,7 @@
 /*   By: mkehon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 15:32:56 by mkehon            #+#    #+#             */
-/*   Updated: 2017/10/26 17:21:58 by mkehon           ###   ########.fr       */
+/*   Updated: 2017/11/03 14:39:16 by yusong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,14 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <stdio.h> // DELETE
+
+typedef struct t_tetris
+{
+	char			**tetris;
+	int				size[2];
+	char			value;
+	struct t_tetris *next;
+}				t_tet;
 
 
 /*
